@@ -19,6 +19,7 @@ Slim::Engine.set_default_options format: :html5
       g.assets            false
       g.helper            false
       g.test_framework    nil
+      g.template_engine   :slim
     end
   end
 end
