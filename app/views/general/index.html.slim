@@ -1,0 +1,24 @@
+div style=("width: 100%; height: 100%")
+  #map_spaces style=("width: 90%; height: 400px;")
+
+= javascript_include_tag "http://maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry"
+= javascript_include_tag "http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"
+
+- content_for :scripts do
+  javascript:
+    var handler = Gmaps.build('Google');
+    handler.buildMap({internal: {id: 'map_spaces'}}, function(){
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(centerMap);
+      } else {
+        handler.map.centerOn(new google.maps.LatLng(-10.1885145,-48.3317027));
+      }
+      var markers = handler.addMarkers(#{raw @markers.to_json});
+      handler.bounds.extendWith(markers);
+    });
+
+
+
+    function centerMap(position){
+      handler.map.centerOn(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+    };

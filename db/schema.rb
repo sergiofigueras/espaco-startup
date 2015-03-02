@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227200032) do
+ActiveRecord::Schema.define(version: 20150228180153) do
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "rating"
@@ -52,10 +52,12 @@ ActiveRecord::Schema.define(version: 20150227200032) do
   create_table "spaces", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "localization"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "spaces", ["user_id"], name: "index_spaces_on_user_id"

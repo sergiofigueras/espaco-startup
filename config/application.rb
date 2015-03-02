@@ -8,7 +8,8 @@ Bundler.require(*Rails.groups)
 
 module EspacoStartup
   class Application < Rails::Application
-Slim::Engine.set_default_options format: :html5
+    Slim::Engine.set_default_options format: :html5
+    config.sass.preferred_syntax = :sass
     config.i18n.default_locale = 'pt-BR'
     config.time_zone = 'Brasilia'
     I18n.enforce_available_locales = false
