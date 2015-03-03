@@ -19,6 +19,8 @@ gem 'turbolinks'
 gem 'devise', '~> 3.4.1'
 # Encryptables for devise
 gem 'devise-encryptable', '0.2.0'
+# Facebook login
+gem 'omniauth-facebook'
 # For 'or' queries statement
 gem 'activerecord_any_of'
 # Simple form
@@ -32,6 +34,8 @@ gem 'font-awesome-rails', '4.3.0.0'
 # Geodecoder + gmaps location services
 gem 'geocoder'
 gem 'gmaps4rails'
+# Paperclip
+gem 'paperclip', '~> 4.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

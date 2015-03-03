@@ -1,0 +1,27 @@
+.row.border-bottom
+  nav.navbar.navbar-static-top.white-bg role="navigation" style=("margin-bottom: 0")
+    .navbar-header
+      a.navbar-minimalize.minimalize-styl-2.btn.btn-primary href="#"
+        i.fa.fa-bars
+      form.navbar-form-custom action="/" method="post" role="search"
+        .form-group
+          input#top-search.form-control name="top-search" placeholder=("Buscar por...") type="text"
+
+    ul.nav.navbar-top-links.navbar-right
+      li
+        - if user_signed_in?
+          = link_to destroy_user_session_path, method: :delete
+            = fa_icon "sign-out", text: "Sair"
+        - else
+          = link_to general_login_popup_path, remote: true
+            = fa_icon "sign-in", text: "Entrar"
+
+.modal.fade id="login-modal" tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-dialog.login-modal-size
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="true"
+          .span &times;
+      .modal-body.center
+
+

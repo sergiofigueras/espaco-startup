@@ -52,7 +52,7 @@ SimpleForm.setup do |config|
   end
 
   # The default wrapper to be used by the FormBuilder.
-  config.default_wrapper = :default
+  config.default_wrapper = :bootstrap
 
   # Define the way to render check boxes / radio buttons with labels.
   # Defaults to :nested for bootstrap config.
@@ -61,7 +61,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'btn'
+  config.button_class = 'btn btn-default'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -76,6 +76,9 @@ SimpleForm.setup do |config|
 
   # ID to add for error notification helper.
   # config.error_notification_id = nil
+
+  # CSS class to add for error notification helper.
+  config.error_notification_class = 'alert alert-warning'
 
   # Series of attempts to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]
@@ -153,7 +156,25 @@ SimpleForm.setup do |config|
 
   # Default class for inputs
   # config.input_class = nil
+  config.label_class = 'control-label'
+  config.input_class = 'form-control'
 
+  SimpleForm::FormBuilder.class_eval do
+      def submit_with_override(field, options = {})
+        data_disable_with = { disable_with: 'Aguarde...' }
+        options[:data] = data_disable_with.merge(options[:data] || {})
+        submit_without_override(field, options)
+      end
+      alias_method_chain :submit, :override
+    end
+
+    config.wrappers :checkbox, :tag => 'div', :input_class => 'wwww' , :class => 'checkbox lorem ipsum', :error_class => 'has-error' do |b|
+      b.use :html5
+      b.use :placeholder
+      b.use :label_input
+    end
+
+    config.wrapper_mappings = { :boolean => :checkbox }
   # Define the default class of the input wrapper of the boolean input.
   config.boolean_label_class = 'checkbox'
 

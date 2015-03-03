@@ -1,0 +1,41 @@
+nav.navbar-default.navbar-static-side role="navigation"
+  .sidebar-collapse
+    ul#side-menu.nav
+      li.nav-header
+        .dropdown.profile-element
+          span
+            - if user_signed_in?
+              = image_tag current_user.avatar.url(:icon), class: "img-circle"
+            - else
+              = image_tag 'thumb/profile.png', class: "img-circle img-small"
+          a.dropdown-toggle data-toggle="dropdown" href="#"
+            span.clear
+              span.block.m-t-xs
+                strong.font-bold = user_signed_in? ? current_user.name : 'Olá, Visitante! :)'
+              - if user_signed_in?
+                span.text-muted.text-xs.block.text-center
+                  | Menu
+                  b.caret
+
+
+                ul.dropdown-menu.animated.fadeInRight.m-t-xs
+                  li
+                    a href="#" Minhas Solicitacoes
+                  li
+                    a href="#{spaces_path}" Meus espacos
+                  li
+                    a href="#" Estatisticas
+                  li
+                    a href="#" Sair
+
+        .logo-element EspacoStartup
+      li class="#{'active' if current_page?('/')}"
+
+        = link_to "/"
+          = fa_icon "sign-out", text: "Todos os Espacos"
+      li class="#{'active' if current_page?('/home/minor')}"
+        = link_to "#"
+          = fa_icon "sign-out", text: "Melhores Espacos"
+      li class="#{'active' if current_page?('/home/minor')}"
+        = link_to "#"
+          = fa_icon "sign-out", text: "Por Recursos"
